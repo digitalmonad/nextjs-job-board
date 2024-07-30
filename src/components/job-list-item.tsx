@@ -23,13 +23,13 @@ export function JobListItem({
   },
 }: JobListItemProps) {
   return (
-    <article className="flex gap-3 rounded-lg border p-5 hover:bg-muted/60">
+    <article className="flex gap-3 rounded-sm border p-5 hover:bg-muted/60">
       <Image
         src={companyLogoUrl || logoPlaceholder}
         alt={`${companyName} logo`}
         width={100}
         height={100}
-        className="self-center rounded-lg"
+        className="self-center rounded-sm"
       />
       <div className="flex-grow space-y-3">
         <div>

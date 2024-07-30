@@ -12,6 +12,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { JobFilterFormSubmitButton } from "./job-filter-form-submit-button";
+import { CrossIcon, X } from "lucide-react";
+import { Button } from "./ui/button";
+import Link from "next/link";
 
 async function filterJobs(formData: FormData) {
   "use server";
@@ -48,8 +51,8 @@ export async function JobFilterSidebar({
     )) as string[];
 
   return (
-    <aside className="sticky top-0 h-fit rounded-lg border bg-background p-4 md:w-[260px]">
-      <form action={filterJobs}>
+    <aside className="sticky top-10 h-fit rounded-sm border bg-background p-4 md:w-[260px]">
+      <form action={filterJobs} key={JSON.stringify(defaultValues)}>
         <div className="space-y-4">
           <div className="flex flex-col gap-2">
             <Label htmlFor="q">Search</Label>
@@ -93,16 +96,27 @@ export async function JobFilterSidebar({
               </SelectContent>
             </Select>
           </div>
-          <div className="flex items-center gap-2">
-            <input
-              id="remote"
-              name="remote"
-              type="checkbox"
-              className="scale-125 accent-black"
-              defaultChecked={!!defaultValues?.remote}
-            />
-            <Label htmlFor="remote">Remote jobs</Label>
+          <div className="flex min-h-10 items-center justify-between">
+            <span className="flex items-center gap-2">
+              <input
+                id="remote"
+                name="remote"
+                type="checkbox"
+                className="scale-125 accent-black"
+                defaultChecked={!!defaultValues?.remote}
+              />
+              <Label htmlFor="remote">Remote jobs</Label>
+            </span>
+
+            {!!Object.values(defaultValues).filter(Boolean).length && (
+              <Link href={"/"}>
+                <Button variant={"ghost"}>
+                  Clear <X className="ml-2 h-3 w-3" />
+                </Button>
+              </Link>
+            )}
           </div>
+
           <JobFilterFormSubmitButton className="w-full">
             Filter jobs
           </JobFilterFormSubmitButton>
