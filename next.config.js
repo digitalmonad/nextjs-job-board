@@ -1,4 +1,10 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      { hostname: "rozu6yrpwyat2dqq.public.blob.vercel-storage.com" },
+    ],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

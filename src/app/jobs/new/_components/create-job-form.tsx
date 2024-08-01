@@ -28,7 +28,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { X } from "lucide-react";
 import { draftToMarkdown } from "markdown-draft-js";
 import { useForm } from "react-hook-form";
-
+import { createJobAction } from "../_actions/create-job-action";
 export function CreateJobForm() {
   const form = useForm<CreateJobValues>({
     resolver: zodResolver(createJobSchema),
@@ -45,7 +45,19 @@ export function CreateJobForm() {
   } = form;
 
   async function onSubmit(values: CreateJobValues) {
-    alert(JSON.stringify(values, null, 2));
+    const formData = new FormData();
+
+    Object.entries(values).forEach(([key, value]) => {
+      if (value) {
+        formData.append(key, value);
+      }
+    });
+
+    try {
+      await createJobAction(formData);
+    } catch (error) {
+      alert("Something went wrong, please try again.");
+    }
   }
 
   return (
