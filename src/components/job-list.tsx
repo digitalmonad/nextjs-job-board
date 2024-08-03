@@ -2,6 +2,7 @@ import prisma from "@/lib/prisma";
 import { JobListItem } from "./job-list-item";
 import { JobFilterValues } from "@/lib/validation";
 import { Prisma } from "@prisma/client";
+import Link from "next/link";
 
 type JobListProps = {
   filterValues: JobFilterValues;
@@ -56,7 +57,11 @@ export async function JobsList({
   return (
     <div className="grow space-y-4">
       {jobs.length > 0 ? (
-        jobs.map((job) => <JobListItem job={job} key={job.id} />)
+        jobs.map((job) => (
+          <Link href={`/jobs/${job.slug}`} key={job.id} className="block">
+            <JobListItem job={job} />
+          </Link>
+        ))
       ) : (
         <div className="flex h-full items-center justify-center">
           No results matching your search criteria.

@@ -31,6 +31,7 @@ export function JobListItem({
         height={100}
         className="self-center rounded-sm"
       />
+
       <div className="flex-grow space-y-3">
         <div>
           <h2 className="text-xl font-medium">{title}</h2>
