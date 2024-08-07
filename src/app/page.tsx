@@ -11,6 +11,7 @@ type HomePageProps = {
     type?: string;
     location?: string;
     remote?: string;
+    page?: string;
   };
 };
 
@@ -29,7 +30,7 @@ function getTitle({ q, type, location, remote }: JobFilterValues) {
 }
 
 export function generateMetadata({
-  searchParams: { q, type, location, remote },
+  searchParams: { q, type, location, remote, page },
 }: HomePageProps): Metadata {
   return {
     title: `${getTitle({
@@ -42,7 +43,7 @@ export function generateMetadata({
 }
 
 export default async function Home({
-  searchParams: { q, type, location, remote },
+  searchParams: { q, type, location, remote, page },
 }: HomePageProps) {
   const filterValues: JobFilterValues = {
     q,
@@ -62,7 +63,10 @@ export default async function Home({
 
       <section className="flex flex-col gap-4 md:flex-row">
         <JobFilterSidebar defaultValues={filterValues} />
-        <JobsList filterValues={filterValues} />
+        <JobsList
+          filterValues={filterValues}
+          page={page ? parseInt(page) : undefined}
+        />
       </section>
     </main>
   );
