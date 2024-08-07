@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { AdminNavbar } from "./_components/admin-navbar";
 
 export const metadata: Metadata = {
   title: "Admin",
@@ -9,5 +10,10 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div>{children}</div>;
+  return (
+    <div>
+      <AdminNavbar />
+      {children}
+    </div>
+  );
 }
