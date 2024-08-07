@@ -11,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { JobFilterFormSubmitButton } from "./job-filter-form-submit-button";
+import { FormSubmitButton } from "./form-submit-button";
 import { CrossIcon, X } from "lucide-react";
 import { Button } from "./ui/button";
 import Link from "next/link";
@@ -117,9 +117,7 @@ export async function JobFilterSidebar({
             )}
           </div>
 
-          <JobFilterFormSubmitButton className="w-full">
-            Filter jobs
-          </JobFilterFormSubmitButton>
+          <FormSubmitButton className="w-full">Filter jobs</FormSubmitButton>
         </div>
       </form>
     </aside>
